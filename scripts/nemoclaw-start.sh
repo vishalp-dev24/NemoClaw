@@ -229,6 +229,7 @@ if [ "$(id -u)" -ne 0 ]; then
 
   # In non-root mode, detach gateway stdout/stderr from the sandbox-create
   # stream so openshell sandbox create can return once the container is ready.
+  rm -f /tmp/gateway.log /tmp/auto-pair.log
   touch /tmp/gateway.log
   chmod 600 /tmp/gateway.log
 
@@ -260,6 +261,7 @@ if [ ${#NEMOCLAW_CMD[@]} -gt 0 ]; then
 fi
 
 # SECURITY: Protect gateway log from sandbox user tampering
+rm -f /tmp/gateway.log /tmp/auto-pair.log
 touch /tmp/gateway.log
 chown gateway:gateway /tmp/gateway.log
 chmod 600 /tmp/gateway.log
